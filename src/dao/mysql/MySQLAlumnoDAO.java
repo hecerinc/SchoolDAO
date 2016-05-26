@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAlumnoDAO implements AlumnoDAO{
+class MySQLAlumnoDAO implements AlumnoDAO{
 
 	final String INSERT = "INSERT INTO alumnos(nombre, apellidos, fecha_nac) VALUES(?, ?, ?)";
 	final String UPDATE = "UPDATE alumnos SET nombre = ?, apellidos = ?, fecha_nac = ? WHERE alumnos.id = ?";
@@ -46,31 +46,44 @@ public class MySQLAlumnoDAO implements AlumnoDAO{
 
 		}
 		finally {
-			if(rs != null){
-				try{
-					rs.close();
-				}catch(SQLException ex){
-					new DAOException("Error en SQL", ex);
-				}
-			}
-			if(stat != null){
-				try{
-					stat.close();
-				}catch (SQLException ex){
-					throw new DAOException("Error en SQL", ex);
-				}
-			}
+			MySQLUtils.close(stat, rs);
 		}
 	}
 
 	@Override
-	public void modify(Alumno a) {
-
+	public void modify(Alumno a) throws DAOException {
+		PreparedStatement stat = null;
+		try {
+			stat = conn.prepareStatement(UPDATE);
+			stat.setString(1, a.getNombre());
+			stat.setString(2, a.getApellidos());
+			stat.setDate(3, new Date(a.getBirthDate().getTime()));
+			stat.setLong(4, a.getId());
+			if(stat.executeUpdate() == 0){
+				throw new DAOException("Puede que no se haya modificado el modelo");
+			}
+		}catch (SQLException ex) {
+			throw new DAOException("Error en SQL", ex);
+		}finally {
+			MySQLUtils.close(stat);
+		}
 	}
 
 	@Override
-	public void delete(Alumno a) {
-
+	public void delete(Alumno a) throws DAOException {
+		PreparedStatement stat = null;
+		try {
+			stat = conn.prepareStatement(DELETE);
+			stat.setLong(1, a.getId());
+			if(stat.executeUpdate() == 0){
+				throw new DAOException("Puede que el alumno no se haya borrado");
+			}
+		}catch (SQLException ex){
+			throw new DAOException("Error en SQL", ex);
+		}
+		finally {
+			MySQLUtils.close(stat);
+		}
 	}
 
 	private Alumno convertir(ResultSet rs) throws SQLException {
@@ -97,20 +110,7 @@ public class MySQLAlumnoDAO implements AlumnoDAO{
 			throw new DAOException("Error en SQL", ex);
 		}
 		finally {
-			if(rs != null){
-				try{
-					rs.close();
-				}catch(SQLException ex){
-					new DAOException("Error en SQL", ex);
-				}
-			}
-			if(stat != null){
-				try{
-					stat.close();
-				} catch (SQLException e) {
-					new DAOException("Error en SQL", e);
-				}
-			}
+			MySQLUtils.close(stat, rs);
 		}
 		return alumnos;
 	}
@@ -134,37 +134,10 @@ public class MySQLAlumnoDAO implements AlumnoDAO{
 			throw new DAOException("Error en SQL", ex);
 		}
 		finally {
-			if(rs != null){
-				try{
-					rs.close();
-				}catch(SQLException ex){
-					new DAOException("Error en SQL", ex);
-				}
-			}
-			if(stat != null){
-				try{
-					stat.close();
-				} catch (SQLException e) {
-					new DAOException("Error en SQL", e);
-				}
-			}
+			MySQLUtils.close(stat, rs);
 		}
 		return a;
 	}
 
-	public static void main(String[] args) throws SQLException, DAOException {
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/escuela", "root", "");
-			AlumnoDAO dao = new MySQLAlumnoDAO(conn);
-			List<Alumno> alumnos = dao.getAll();
-			for(Alumno a : alumnos){
-				System.out.println(a.toString());
-			}
-		}finally {
-			if(conn != null){
-				conn.close();
-			}
-		}
-	}
+
 }

@@ -75,9 +75,8 @@ class MySQLAlumnoDAO implements AlumnoDAO{
 		try {
 			stat = conn.prepareStatement(DELETE);
 			stat.setLong(1, a.getId());
-			if(stat.executeUpdate() == 0){
+			if(stat.executeUpdate() == 0)
 				throw new DAOException("Puede que el alumno no se haya borrado");
-			}
 		}catch (SQLException ex){
 			throw new DAOException("Error en SQL", ex);
 		}

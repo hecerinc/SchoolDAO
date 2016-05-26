@@ -14,6 +14,6 @@ public interface DAO<T, K> {
 
 	List<T> getAll() throws DAOException;
 
-	T get(Long id) throws DAOException;
+	T get(K id) throws DAOException;
 
 }

@@ -8,13 +8,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLProfesorDAO implements ProfesorDAO{
+public class MySQLProfesorDAO implements ProfesorDAO {
 
-	final static String INSERT = "INSERT INTO profesores(nombre, apellidos) VALUES(?,?)";
-	final static String UPDATE = "UPDATE profesores SET nombre = ?, apellidos = ?, WHERE profesores.id = ?";
-	final static String DELETE = "DELETE FROM profesores WHERE profesores.id = ?";
-	final static String GETALL = "SELECT * FROM profesores";
-	final static String GETONE = GETALL + " WHERE profesores.id = ?";
+	private final static String INSERT = "INSERT INTO profesores(nombre, apellidos) VALUES(?,?)";
+	private final static String UPDATE = "UPDATE profesores SET nombre = ?, apellidos = ?, WHERE profesores.id = ?";
+	private final static String DELETE = "DELETE FROM profesores WHERE profesores.id = ?";
+	private final static String GETALL = "SELECT * FROM profesores";
+	private final static String GETONE = GETALL + " WHERE profesores.id = ?";
 
 
 	private Connection conn;

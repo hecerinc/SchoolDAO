@@ -2,38 +2,59 @@ package modelo;
 
 public class Matricula {
 
-	private long alumno, asignatura;
-	private int year;
+	public class IdMatricula{
+		private long alumno, asignatura;
+		private int year;
+
+		public IdMatricula(long alumno, long asignatura, int year) {
+			this.alumno = alumno;
+			this.asignatura = asignatura;
+			this.year = year;
+		}
+
+		public long getAlumno() {
+			return alumno;
+		}
+
+		public void setAlumno(long alumno) {
+			this.alumno = alumno;
+		}
+
+		public long getAsignatura() {
+			return asignatura;
+		}
+
+		public void setAsignatura(long asignatura) {
+			this.asignatura = asignatura;
+		}
+
+		public int getYear() {
+			return year;
+		}
+
+		public void setYear(int year) {
+			this.year = year;
+		}
+	}
+
+	private IdMatricula id;
 	private Integer nota = null;
 
+	public Matricula(IdMatricula id) {
+		this.id = id;
+	}
+
 	public Matricula(long alumno, long asignatura, int year) {
-		this.alumno = alumno;
-		this.asignatura = asignatura;
-		this.year = year;
+		this.id = new IdMatricula(alumno, asignatura, year);
 	}
 
-	public long getAlumno() {
-		return alumno;
+
+	public IdMatricula getId() {
+		return id;
 	}
 
-	public void setAlumno(long alumno) {
-		this.alumno = alumno;
-	}
-
-	public long getAsignatura() {
-		return asignatura;
-	}
-
-	public void setAsignatura(long asignatura) {
-		this.asignatura = asignatura;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
+	public void setId(IdMatricula id) {
+		this.id = id;
 	}
 
 	public Integer getNota() {
@@ -47,9 +68,7 @@ public class Matricula {
 	@Override
 	public String toString() {
 		return "Matricula{" +
-				"alumno=" + alumno +
-				", asignatura=" + asignatura +
-				", year=" + year +
+				"id=" + id +
 				", nota=" + nota +
 				'}';
 	}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="frames.ListAlumnosFrame">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="712" height="499"/>
+    </constraints>
+    <properties>
+      <background color="-1179658"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <toolbar id="5e6c5">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-1052689"/>
+          <floatable value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="bf6c5" class="javax.swing.JButton" binding="newButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <hideActionText value="false"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <icon value="resources/icons/plus.png"/>
+              <margin top="2" left="20" bottom="2" right="20"/>
+              <text value="&amp;New"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+          <component id="a51fc" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="3b981" class="javax.swing.JButton" binding="editButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <icon value="resources/icons/edit.png"/>
+              <margin top="2" left="20" bottom="2" right="20"/>
+              <text value="&amp;Edit"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+          <component id="87207" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <icon value="resources/icons/garbage.png"/>
+              <margin top="2" left="20" bottom="2" right="20"/>
+              <text value="&amp;Delete"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+          <component id="4ec8c" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="7e2e7" class="javax.swing.JButton" binding="saveButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <icon value="resources/icons/save.png"/>
+              <margin top="2" left="20" bottom="2" right="20"/>
+              <text value="&amp;Save"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+          <component id="fdbe1" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <icon value="resources/icons/error.png"/>
+              <margin top="2" left="20" bottom="2" right="20"/>
+              <text value="&amp;Cancel"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+      <scrollpane id="8b69b" binding="tabla">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <background color="-1118482"/>
+          <enabled value="true"/>
+          <focusable value="false"/>
+          <wheelScrollingEnabled value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2ae4c" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-1"/>
+              <foreground color="-14277074"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <toolbar id="c228b">
+        <constraints border-constraint="South"/>
+        <properties>
+          <floatable value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="f8b0c" class="javax.swing.JLabel" binding="foundRecords">
+            <constraints/>
+            <properties>
+              <maximumSize width="200" height="25"/>
+              <minimumSize width="400" height="20"/>
+              <preferredSize width="200" height="20"/>
+              <text value="0 registros encontrados"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+    </children>
+  </grid>
+</form>

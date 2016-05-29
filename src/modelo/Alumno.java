@@ -14,6 +14,12 @@ public class Alumno {
 		this.birthDate = birthDate;
 	}
 
+	public Alumno(){
+		this.nombre = "";
+		this.apellidos = "";
+		this.birthDate = new Date();
+	}
+
 	public Long getId() {
 		return id;
 	}

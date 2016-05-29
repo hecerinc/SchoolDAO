@@ -37,6 +37,8 @@
           <component id="3b981" class="javax.swing.JButton" binding="editButton" default-binding="true">
             <constraints/>
             <properties>
+              <disabledIcon value="resources/icons/editdisabled.png"/>
+              <enabled value="false"/>
               <horizontalTextPosition value="0"/>
               <icon value="resources/icons/edit.png"/>
               <margin top="2" left="20" bottom="2" right="20"/>
@@ -48,6 +50,9 @@
           <component id="87207" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
             <constraints/>
             <properties>
+              <defaultCapable value="false"/>
+              <disabledIcon value="resources/icons/garbagedisabled.png"/>
+              <enabled value="false"/>
               <horizontalTextPosition value="0"/>
               <icon value="resources/icons/garbage.png"/>
               <margin top="2" left="20" bottom="2" right="20"/>
@@ -63,6 +68,8 @@
           <component id="7e2e7" class="javax.swing.JButton" binding="saveButton" default-binding="true">
             <constraints/>
             <properties>
+              <disabledIcon value="resources/icons/savedisabled.png"/>
+              <enabled value="false"/>
               <horizontalTextPosition value="0"/>
               <icon value="resources/icons/save.png"/>
               <margin top="2" left="20" bottom="2" right="20"/>
@@ -74,6 +81,8 @@
           <component id="fdbe1" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
             <constraints/>
             <properties>
+              <disabledIcon value="resources/icons/errordisabled.png"/>
+              <enabled value="false"/>
               <horizontalTextPosition value="0"/>
               <icon value="resources/icons/error.png"/>
               <margin top="2" left="20" bottom="2" right="20"/>
@@ -84,25 +93,6 @@
           </component>
         </children>
       </toolbar>
-      <scrollpane id="8b69b" binding="tabla">
-        <constraints border-constraint="Center"/>
-        <properties>
-          <background color="-1118482"/>
-          <enabled value="true"/>
-          <focusable value="false"/>
-          <wheelScrollingEnabled value="false"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="2ae4c" class="javax.swing.JTable" binding="table1" default-binding="true">
-            <constraints/>
-            <properties>
-              <background color="-1"/>
-              <foreground color="-14277074"/>
-            </properties>
-          </component>
-        </children>
-      </scrollpane>
       <toolbar id="c228b">
         <constraints border-constraint="South"/>
         <properties>
@@ -121,6 +111,42 @@
           </component>
         </children>
       </toolbar>
+      <grid id="4628e" binding="panel2" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="8b69b" binding="tabla">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <background color="-1118482"/>
+              <enabled value="true"/>
+              <focusable value="false"/>
+              <wheelScrollingEnabled value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2ae4c" class="javax.swing.JTable" binding="table1" default-binding="true">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <foreground color="-14277074"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <grid id="7383b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="East"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <nested-form id="8f57d" form-file="frames/DetalleAlumnoPanel.form" binding="detalle">
+            <constraints/>
+          </nested-form>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

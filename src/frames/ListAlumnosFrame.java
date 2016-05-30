@@ -8,6 +8,7 @@ import modelo.Alumno;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class ListAlumnosFrame extends JFrame{
 
@@ -24,9 +25,12 @@ public class ListAlumnosFrame extends JFrame{
 			editButton.setEnabled(seleccionValida);
 			deleteButton.setEnabled(seleccionValida);
 		});
+		this.detalle.setEditable(false);
 		editButton.addActionListener(this::editActionPerformed);
 		cancelButton.addActionListener(this::cancelActionPerformed);
 		newButton.addActionListener(this::addActionPerformed);
+		saveButton.addActionListener(this::saveActionPerformed);
+		deleteButton.addActionListener(this::deleteActionPerformed);
 	}
 
 	private void editActionPerformed(ActionEvent evt){
@@ -43,12 +47,7 @@ public class ListAlumnosFrame extends JFrame{
 	}
 
 	private void cancelActionPerformed(ActionEvent evt){
-		detalle.setAlumno(null);
-		detalle.setEditable(false);
-		detalle.loadData();
-		table1.clearSelection();
-		saveButton.setEnabled(false);
-		cancelButton.setEnabled(false);
+		clearFields();
 	}
 
 	private void addActionPerformed(ActionEvent evt){
@@ -57,6 +56,50 @@ public class ListAlumnosFrame extends JFrame{
 		detalle.setEditable(true);
 		saveButton.setEnabled(true);
 		cancelButton.setEnabled(true);
+	}
+
+	private void saveActionPerformed(ActionEvent evt) {
+		// Get la info del alumno de los fields
+		try {
+			detalle.saveData();
+			Alumno a = detalle.getAlumno();
+			if(a.getId() == null){
+				// Nuevo alumno
+				manager.getAlumnoDAO().insert(a);
+			}
+			else{
+				// Alumno ya existente
+				manager.getAlumnoDAO().modify(a);
+			}
+			// Clear fields here
+			clearFields();
+			this.model.updateModel();
+			this.model.fireTableDataChanged();
+		} catch (ParseException | DAOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	private void clearFields(){
+		detalle.setAlumno(null);
+		detalle.setEditable(false);
+		detalle.loadData();
+		table1.clearSelection();
+		saveButton.setEnabled(false);
+		cancelButton.setEnabled(false);
+	}
+	private void deleteActionPerformed(ActionEvent evt){
+		if(JOptionPane.showConfirmDialog(rootPane,  "¿Seguro que quieres borrar a este alumno?",
+				"Borrar alumno", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+			try {
+				Alumno alumno = getSelectedAlumno();
+				manager.getAlumnoDAO().delete(alumno);
+				model.updateModel();
+				model.fireTableDataChanged();
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private Alumno getSelectedAlumno() throws DAOException {

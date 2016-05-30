@@ -27,8 +27,8 @@ public class AlumnosTableModel extends AbstractTableModel{
 	public String getColumnName(int column){
 		switch (column){
 			case 0: return "ID";
-			case 1: return "Apellidos";
-			case 2: return "Nombre";
+			case 1: return "Nombre";
+			case 2: return "Apellidos";
 			case 3: return "Fecha de nacimiento";
 			default: return "[no]";
 		}
@@ -49,8 +49,8 @@ public class AlumnosTableModel extends AbstractTableModel{
 		Alumno requested = datos.get(rowIndex);
 		switch(columnIndex){
 			case 0: return requested.getId();
-			case 1: return requested.getApellidos();
-			case 2: return requested.getNombre();
+			case 1: return requested.getNombre();
+			case 2: return requested.getApellidos();
 			case 3:
 				DateFormat df = DateFormat.getDateInstance();
 				return df.format(requested.getBirthDate());
